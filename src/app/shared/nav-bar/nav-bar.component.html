@@ -2,12 +2,13 @@
     <a class="navbar-brand" [routerLink]="['/books']">Home</a>
     <div class="collapse navbar-collapse">
         <div class="navbar-nav">
-            <a class="nav-item nav-link" 
-                [routerLink]="['/book']" 
-                routerLinkActive="active"
+            <a class="nav-item nav-link" [routerLink]="['/book']" routerLinkActive="active"
                 [routerLinkActiveOptions]="{exact: true}">
                 Add new book...
             </a>
         </div>
+    </div>
+    <div *ngIf="spinnerOn" class="spinner-grow text-light" role="status">
+        <span class="sr-only">Loading...</span>
     </div>
 </nav>

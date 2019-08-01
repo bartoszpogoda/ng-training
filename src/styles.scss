@@ -1,1 +1,5 @@
-@import "~bootstrap/scss/bootstrap" // Tylda oznacza katalog node_modules
+@import "~bootstrap/scss/bootstrap"; // Tylda oznacza katalog node_modules
+
+.ng-invalid.ng-touched {
+    @extend .is-invalid;
+}

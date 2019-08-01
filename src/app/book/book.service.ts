@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Book } from './book';
+import { Book, BookProperties } from './book';
 import { Observable, Subject, BehaviorSubject, of, throwError } from 'rxjs';
 import { delay } from 'rxjs/operators';
 
@@ -27,13 +27,16 @@ export class BookService {
     return this.bookSubject;
   }
 
-  saveOrUpdate(book: Book): Observable<Book> {
+  saveOrUpdate(book: Book | BookProperties): Observable<Book> {
     return new Observable<Book>(subscriber => {
       const currentBooks = this.bookSubject.getValue();
       let updatedBooks;
       let bookAfterUpdate;
-      if (book.id != null) {
-        updatedBooks = currentBooks.map(currentBook => currentBook.id === book.id ? book : currentBook);
+
+      const id = (book as Book).id; // jak rzutowanie sie nie uda bedzie nullem albo undefem
+
+      if (id != null) {
+        updatedBooks = currentBooks.map(currentBook => currentBook.id === id ? book : currentBook);
         bookAfterUpdate = book;
       } else {
         bookAfterUpdate = { ...book, id: this.idSeq++ };
