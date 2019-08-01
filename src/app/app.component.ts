@@ -1,10 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
+  template: `
+    <div class="container-fluid">
+      <app-nav-bar></app-nav-bar>
+      <!-- <app-book-overview class="pointer"></app-book-overview> -->
+      <router-outlet></router-outlet>
+    </div>
+  `,
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'my-dream-app';
-}
+export class AppComponent { }
