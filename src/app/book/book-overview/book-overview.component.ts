@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Book } from '../book';
 import { BookService } from '../book.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-book-overview',
@@ -12,23 +13,15 @@ export class BookOverviewComponent implements OnInit {
   books$: Observable<Book[]>;
   selectedBook: Book | undefined;
 
-  constructor(private bookService: BookService) { }
+  constructor(private readonly bookService: BookService, 
+              private readonly router: Router) { }
 
   ngOnInit() {
     this.books$ = this.bookService.findAll();  
   }
 
-  selectBook(book: Book) {
-    this.selectedBook = book;
+  goToBookDetails(book: Book) {
+    this.router.navigate(['/book', book.id]);
   }
 
-  isBookSelected(book: Book) {
-    return this.selectedBook === book;
-  }
-
-  updateBook(book: Book) {
-    this.bookService.update(book);
-    // this.books = this.books.map(currentBook => currentBook.id === book.id ? book : currentBook); 
-    // this.selectedBook = book;
-  }
 }

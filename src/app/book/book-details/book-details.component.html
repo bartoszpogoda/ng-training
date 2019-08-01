@@ -1,19 +1,18 @@
-<div class="container-fluid">
-    <form #bookForm (submit)="notifyOnBookUpdate($event)">
-        <div class="form-group row">
-            <label for="author" class="col-sm-2 col-form-label">Author:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="author" #authorInput [value]="book.author">
-            </div>
+<form #bookForm (submit)="saveOrUpdateAndGoToOverview($event)" 
+    *ngIf="book$ | async as book">
+    <div class="form-group row">
+        <label for="author" class="col-sm-2 col-form-label">Author:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="author" #authorInput [value]="book.author || ''">
         </div>
-        <div class="form-group row">
-            <label for="title" class="col-sm-2 col-form-label">Title:</label>
-            <div class="col-sm-10">
-                <input type="text" class="form-control" id="title" #titleInput [value]="book.title">
-            </div>
+    </div>
+    <div class="form-group row">
+        <label for="title" class="col-sm-2 col-form-label">Title:</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" id="title" #titleInput [value]="book.title || ''">
         </div>
-        <!-- <button type="button" class="btn btn-primary"
+    </div>
+    <!-- <button type="button" class="btn btn-primary"
             (click)="notifyOnBookUpdate(authorInput.value, titleInput.value)">Apply</button> -->
-        <button type="submit" class="btn btn-primary">Apply</button>
-    </form>
-</div>
+    <button type="submit" class="btn btn-primary">Save & Close</button>
+</form>

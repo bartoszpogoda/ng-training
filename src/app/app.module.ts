@@ -29,7 +29,12 @@ import { SharedModule } from './shared/shared.module';
     {
       path: 'book',
       component: BookDetailsComponent
-    }])
+    },
+    {
+      path: 'book/:bookId',
+      component: BookDetailsComponent
+    }
+    ])
   ],
   bootstrap: [AppComponent]
 })
