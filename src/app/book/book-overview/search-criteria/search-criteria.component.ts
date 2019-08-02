@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { SearchCriteria } from '../../book';
 import { FormGroup, FormBuilder } from '@angular/forms';
+import { Role } from 'src/app/shared/security/model/authorized-route';
 
 @Component({
   selector: 'app-search-criteria',
@@ -8,6 +9,8 @@ import { FormGroup, FormBuilder } from '@angular/forms';
   styleUrls: ['./search-criteria.component.scss']
 })
 export class SearchCriteriaComponent {
+
+  admin = Role.Admin;
 
   @Input()
   set criteria(criteria: SearchCriteria) {
