@@ -21,14 +21,14 @@ export class BookDetailsComponent {
   book: Book | {};
   bookForm: FormGroup;
 
-  private bookId: number | null;
+  // private bookId: number | null;
 
   constructor(private readonly bookService: BookService,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     formBuilder: FormBuilder) {
 
-    this.bookId = this.route.snapshot.params.bookId ? +this.route.snapshot.params.bookId : null;
+    // this.bookId = this.route.snapshot.params.bookId ? +this.route.snapshot.params.bookId : null;
     this.book = this.route.snapshot.data.book || {};
 
     // this.bookForm = new FormGroup({

@@ -1,21 +1,12 @@
-<div class="row">
-    <div class="col-sm-12">
-        <table class="table table-hover">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">Title</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let book of books$ | async; index as i"
-                    (click)="goToBookDetails(book)">
-                    <th scope="row">{{i + 1}}</th>
-                    <td>{{book.author}}</td>
-                    <td>{{book.title}}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+
+<app-search-criteria 
+    [criteria]="searchCriteria"
+    (criteriaChange)="refreshParams($event)"
+></app-search-criteria>
+
+<app-search-results *ngIf="books$ | async as books; else noResults" 
+    [results]="books"
+    (bookClick)="goToBookDetails($event)"
+></app-search-results>
+
+<ng-template #noResults>No results</ng-template>

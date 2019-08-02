@@ -9,37 +9,41 @@ import { BookDetailsComponent } from './book/book-details/book-details.component
 import { SharedModule } from './shared/shared.module';
 import { BookDetailsResolver } from './book/book-details/book-details.resolver';
 import { filter } from 'rxjs/operators';
+import {HttpClientModule} from '@angular/common/http';
+
+export const routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'books'
+  },
+  {
+    path: 'books',
+    component: BookOverviewComponent
+  },
+  {
+    path: 'book',
+    component: BookDetailsComponent
+  },
+  {
+    path: 'book/:bookId',
+    component: BookDetailsComponent,
+    resolve: {
+      book: BookDetailsResolver
+    }
+  }
+];
 
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
-    SharedModule,
     BrowserModule,
+    HttpClientModule,
+    SharedModule,
     BookModule,
-    RouterModule.forRoot([
-      {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'books'
-      },
-      {
-        path: 'books',
-        component: BookOverviewComponent
-      },
-      {
-        path: 'book',
-        component: BookDetailsComponent
-      },
-      {
-        path: 'book/:bookId',
-        component: BookDetailsComponent,
-        resolve: {
-          book: BookDetailsResolver
-        }
-      }
-    ])
+    RouterModule.forRoot(routes)
   ],
   bootstrap: [AppComponent]
 })

@@ -1,4 +1,5 @@
-<form [formGroup]="bookForm" (ngSubmit)="saveOrUpdateAndGoToOverview($event)">
+<form [formGroup]="bookForm" (ngSubmit)="saveOrUpdateAndGoToOverview($event)" 
+    #bookFormDirective="ngForm" [class.ng-submitted]="bookFormDirective.submitted">
     <!--*ngIf="book$ | async as book"-->
     <div class="form-group row">
         <label for="author" class="col-sm-2 col-form-label">Author:</label>

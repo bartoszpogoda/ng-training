@@ -1,5 +1,5 @@
 @import "~bootstrap/scss/bootstrap"; // Tylda oznacza katalog node_modules
 
-.ng-invalid.ng-touched {
+.ng-invalid.ng-touched, .ng-submitted .ng-invalid {
     @extend .is-invalid;
 }
