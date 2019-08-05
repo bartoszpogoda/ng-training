@@ -1,0 +1,12 @@
+
+<app-search-criteria 
+    [criteria]="searchCriteria"
+    (criteriaChange)="refreshParams($event)"
+></app-search-criteria>
+
+<app-search-results *ngIf="books$ | async as books; else noResults" 
+    [results]="books"
+    (bookClick)="goToBookDetails($event)"
+></app-search-results>
+
+<ng-template #noResults>No results</ng-template>
